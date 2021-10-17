@@ -10,6 +10,7 @@
   "author": "@harkl_",
   "license": "MIT",
   "dependencies": {
-    "@moreavy/simple-csv-tools": "^1.0.1"
+    "@moreavy/simple-csv-tools": "^1.0.1",
+    "lodash": "^4.17.21"
   }
 }
