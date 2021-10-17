@@ -1,0 +1,11 @@
+{
+  "name": "airdrop-csv-cleaner",
+  "version": "1.0.0",
+  "description": "Node tools for cleaning a CSV ready for an airdrop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@harkl_",
+  "license": "MIT"
+}
