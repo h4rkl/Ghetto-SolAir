@@ -4,7 +4,8 @@
   "description": "Node tools for cleaning a CSV ready for an airdrop",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "npx run-func file.js someFunction \"just some parameter\""
   },
   "author": "@harkl_",
   "license": "MIT"
