@@ -8,5 +8,8 @@
     "run": "npx run-func file.js someFunction \"just some parameter\""
   },
   "author": "@harkl_",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@moreavy/simple-csv-tools": "^1.0.1"
+  }
 }
