@@ -1,3 +1,8 @@
-const Spreadsheet = require("simple-csv-tools");
+const Spreadsheet = require("@moreavy/simple-csv-tools");
 
-var sheet = new Spreadsheet(path: string, stringsOnly: boolean);
+const csvToJSON = () => {
+    const sheet = new Spreadsheet("data/raw.csv");
+    console.log(sheet.toStr());
+};
+
+csvToJSON();
