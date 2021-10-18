@@ -9,12 +9,12 @@ const { deleteFile } = require('./index')
  * @param {*} amount 
  * @param {*} token 
  */
-const exeAirdrop = (amount, token) => {
-  const d = require("./data/test.json");
+const exeAirdrop = (amount, token, file) => {
+  const d = require(file);
   const errors = [];
   _.forEach(d, v => {
     // Execute the token transfer here
-    shell.exec(`spl-token transfer ${token} ${amount} ${v.address} --fund-recipient`);
+    shell.exec(`spl-token transfer ${token} ${amount} ${v.address} --fund-recipient --allow-unfunded-recipient`);
     // Push any accounts that have errors
     if (shell.error()) {
       errors.push(v);
