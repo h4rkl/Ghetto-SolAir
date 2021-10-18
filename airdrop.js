@@ -12,7 +12,8 @@ const { deleteFile } = require('./index')
 const exeAirdrop = (amount, token, file) => {
   const d = require(file);
   const errors = [];
-  _.forEach(d, v => {
+  _.forEach(d,(v, i) => {
+    console.log(`Airdropping to count: ${i}/${d.length}`)
     // Execute the token transfer here
     shell.exec(`spl-token transfer ${token} ${amount} ${v.address} --fund-recipient --allow-unfunded-recipient`);
     // Push any accounts that have errors
