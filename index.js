@@ -68,8 +68,8 @@ const bulkTokenCSV = async (amount, token) => {
 // removeOffCurveKeys();
 // bulkTokenCSV();
 
-
 module.exports = {
+  deleteFile,
   csvToJSON,
   removeOffCurveKeys,
   bulkTokenCSV

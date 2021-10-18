@@ -8,7 +8,7 @@
     "csvToJSON": "npx run-func index.js csvToJSON raw.csv",
     "validateKeys": "npx run-func index.js removeOffCurveKeys",
     "bulkToken": "npx run-func index.js bulkTokenCSV 1000 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz",
-    "csv": "npx run-func index.js csvToJSON"
+    "airdrop": "npx run-func airdrop.js exeAirdrop 0.01 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz"
   },
   "author": "@harkl_",
   "license": "MIT",
@@ -16,6 +16,7 @@
     "@moreavy/simple-csv-tools": "^1.0.1",
     "@solana/web3.js": "^1.29.2",
     "lodash": "^4.17.21",
-    "objects-to-csv": "^1.3.6"
+    "objects-to-csv": "^1.3.6",
+    "shelljs": "^0.8.4"
   }
 }
