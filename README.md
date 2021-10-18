@@ -4,6 +4,8 @@ A guerilla tactix command lined based airdrop tool for Solana with no polish and
 
 ## Quickstart file-cleaner
 
+I used Google forms to collect addresses and the example output is located at `data/example.csv`. You can use this format or adjust to your own flavour.
+
 - `cd data && mv example.csv raw.csv`
 - `npm run csvToJSON`
 - `npm run validateKeys`
