@@ -36,7 +36,7 @@ const removeOffCurveKeys = async () => {
     const base58Str = v.address.replace(/[^a-z0-9s]/gi,'');
     // Solana keys are 44 chars in length
     if (base58Str.length === 44) {
-      key = new PublicKey(base58Str);
+      const key = new PublicKey(base58Str);
       return PublicKey.isOnCurve(key);
     }
     return null;
@@ -48,6 +48,15 @@ const removeOffCurveKeys = async () => {
   });
 };
 
+const bulkTokenCSV = async () => {
+  const d = require("./data/curved.json");
+  
+  fs.appendFile('data/bulk-token-upload.csv', JSON.stringify(curved), function (err) {
+    if (err) return console.log(err);
+    console.log('Curved');
+  });
+};
+
 // csvToJSON();
-removeOffCurveKeys();
-// dedupeJSONKey();
+// removeOffCurveKeys();
+bulkTokenCSV();
