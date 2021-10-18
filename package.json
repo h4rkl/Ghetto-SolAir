@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "csvToJSON": "npx run-func index.js csvToJSON raw.csv",
+    "validateKeys": "npx run-func index.js removeOffCurveKeys",
+    "bulkToken": "npx run-func index.js bulkTokenCSV 1000 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz",
     "csv": "npx run-func index.js csvToJSON"
   },
   "author": "@harkl_",
