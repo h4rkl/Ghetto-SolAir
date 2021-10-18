@@ -8,7 +8,7 @@
     "csvToJSON": "npx run-func index.js csvToJSON raw.csv",
     "validateKeys": "npx run-func index.js removeOffCurveKeys",
     "bulkToken": "npx run-func index.js bulkTokenCSV 1000 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz",
-    "airdrop": "npx run-func airdrop.js exeAirdrop 0.01 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz"
+    "danger:airdrop": "npx run-func airdrop.js exeAirdrop 0.01 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz"
   },
   "author": "@harkl_",
   "license": "MIT",
