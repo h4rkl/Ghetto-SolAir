@@ -13,7 +13,7 @@ const exeAirdrop = (amount, token, file) => {
   const d = require(file);
   const errors = [];
   _.forEach(d,(v, i) => {
-    console.log(`Airdropping to count: ${i}/${d.length}`)
+    console.log(`Airdropping ${amount} to ${v.address} at count: ${i}/${d.length} recipients`);
     // Execute the token transfer here
     shell.exec(`spl-token transfer ${token} ${amount} ${v.address} --fund-recipient --allow-unfunded-recipient`);
     // Push any accounts that have errors
