@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "npx run-func file.js someFunction \"just some parameter\""
+    "csv": "npx run-func index.js csvToJSON"
   },
   "author": "@harkl_",
   "license": "MIT",
   "dependencies": {
     "@moreavy/simple-csv-tools": "^1.0.1",
     "@solana/web3.js": "^1.29.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "objects-to-csv": "^1.3.6"
   }
 }

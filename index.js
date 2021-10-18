@@ -2,6 +2,7 @@ const fs = require("fs");
 const _ = require("lodash");
 const Spreadsheet = require("@moreavy/simple-csv-tools");
 const { PublicKey } = require("@solana/web3.js");
+const ObjectsToCsv = require('objects-to-csv');
 
 const deleteFile = (filepath) => {
   fs.unlink(filepath, function (err) {
@@ -33,7 +34,7 @@ const removeOffCurveKeys = async () => {
   const d = require("./data/cleaned.json");
   const curved = _.filter(d, v => {
     // base58 only has upper, lower and numeric
-    const base58Str = v.address.replace(/[^a-z0-9s]/gi,'');
+    const base58Str = v.address.replace(/\W+/g,'').replace(/\s+/g, "");
     // Solana keys are 44 chars in length
     if (base58Str.length === 44) {
       const key = new PublicKey(base58Str);
@@ -48,13 +49,19 @@ const removeOffCurveKeys = async () => {
   });
 };
 
-const bulkTokenCSV = async () => {
+const bulkTokenCSV = async (amount, token) => {
   const d = require("./data/curved.json");
-  
-  fs.appendFile('data/bulk-token-upload.csv', JSON.stringify(curved), function (err) {
-    if (err) return console.log(err);
-    console.log('Curved');
+  const bulkData = [];
+  _.map(d, v => {
+    bulkData.push({
+      Address: v.address,
+      Amount: amount,
+      Coin: token
+    }); 
   });
+  deleteFile('data/bulkData.csv');
+  const csv = new ObjectsToCsv(bulkData);
+  await csv.toDisk('./data/bulkData.csv');
 };
 
 // csvToJSON();
