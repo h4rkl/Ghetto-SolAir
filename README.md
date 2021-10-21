@@ -9,6 +9,7 @@ I used Google forms to collect addresses and the example output is located at `d
 - `cd data && mv example.csv raw.csv`
 - `npm run csvToJSON`
 - `npm run validateKeys`
+- `npm run removeDupes`
 - `npm run bulkToken`
 
 ## Quickstart airdropper
