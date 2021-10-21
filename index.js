@@ -11,6 +11,10 @@ const deleteFile = (filepath) => {
   });
 }
 
+/**
+ * Turns a raw.csv file into a cleaned.json file
+ * contianing an array of key/vale pairs
+ */
 const csvToJSON = () => {
   const sheet = new Spreadsheet("data/raw.csv");
   const data = sheet.toArr("data/raw.json");
@@ -30,6 +34,10 @@ const csvToJSON = () => {
   });
 };
 
+/**
+ * Removes all keys that aren't alpha-numeris and 43/44 chars in length
+ * Eg. base58 Solana keys
+ */
 const removeOffCurveKeys = async () => {
   const d = require("./data/cleaned.json");
   const curved = _.filter(d, v => {
@@ -49,6 +57,10 @@ const removeOffCurveKeys = async () => {
   });
 };
 
+/**
+ * Removes all the duplicates from the curved.json file by data.key
+ * @param {string} key 
+ */
 const removeDupesByKey = async (key) => {
   let d = require("./data/curved.json");
   d = d.filter((value, index, self) =>
@@ -56,6 +68,7 @@ const removeDupesByKey = async (key) => {
       t[key] === value[key]
     ))
   );
+  console.log(`There are ${d.length} addresses in the list`);
   deleteFile('data/curved.json');
   fs.appendFile('data/curved.json', JSON.stringify(d), function (err) {
     if (err) return console.log(err);
