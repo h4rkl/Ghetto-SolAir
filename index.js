@@ -35,8 +35,8 @@ const removeOffCurveKeys = async () => {
   const curved = _.filter(d, v => {
     // base58 only has upper, lower and numeric
     const base58Str = v.address.replace(/\W+/g,'').replace(/\s+/g, "");
-    // Solana keys are 44 chars in length
-    if (base58Str.length === 44) {
+    // Solana keys are 43/44 chars in length
+    if (base58Str.length === 43 || base58Str.length === 44) {
       const key = new PublicKey(base58Str);
       return PublicKey.isOnCurve(key);
     }
@@ -46,6 +46,20 @@ const removeOffCurveKeys = async () => {
   fs.appendFile('data/curved.json', JSON.stringify(curved), function (err) {
     if (err) return console.log(err);
     console.log('Curved');
+  });
+};
+
+const removeDupesByKey = async (key) => {
+  let d = require("./data/curved.json");
+  d = d.filter((value, index, self) =>
+    index === self.findIndex((t) => (
+      t[key] === value[key]
+    ))
+  );
+  deleteFile('data/curved.json');
+  fs.appendFile('data/curved.json', JSON.stringify(d), function (err) {
+    if (err) return console.log(err);
+    console.log('Keyed the curve');
   });
 };
 
@@ -72,5 +86,6 @@ module.exports = {
   deleteFile,
   csvToJSON,
   removeOffCurveKeys,
+  removeDupesByKey,
   bulkTokenCSV
 }

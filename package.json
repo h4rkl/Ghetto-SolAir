@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "csvToJSON": "npx run-func index.js csvToJSON raw.csv",
     "validateKeys": "npx run-func index.js removeOffCurveKeys",
+    "removeDupes": "npx run-func index.js removeDupesByKey address",
     "bulkToken": "npx run-func index.js bulkTokenCSV 1000 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz",
     "test:airdrop": "npx run-func airdrop.js exeAirdrop 0.00001 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz ./data/test.json",
     "danger:airdrop": "npx run-func airdrop.js exeAirdrop 1000 soso1vCmdxwEZqU47M4NZ4MxZH19ppgqF1auG7dP3wz ./data/curved.json"
