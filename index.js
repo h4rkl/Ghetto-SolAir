@@ -23,14 +23,15 @@ const csvToJSON = () => {
   _.forEach(data, (value) => {
     var result = {};
     for (var i = 0; i < head.length; i++) {
-      result[head[i]] = value[i];
+      result[head[i]] = value[i].trim();
     }
     kvData.push(result);
   });
+  const c = kvData.length;
   deleteFile('data/cleaned.json');
   fs.appendFile('data/cleaned.json', JSON.stringify(kvData), function (err) {
     if (err) return console.log(err);
-    console.log('Cleaned');
+    console.log(`Converted ${c} records`);
   });
 };
 
@@ -50,6 +51,7 @@ const removeOffCurveKeys = async () => {
     }
     return null;
   });
+  console.log(`Remaining records: ${curved.length}`);
   deleteFile('data/curved.json');
   fs.appendFile('data/curved.json', JSON.stringify(curved), function (err) {
     if (err) return console.log(err);
@@ -86,6 +88,7 @@ const bulkTokenCSV = async (amount, token) => {
       Coin: token
     }); 
   });
+  console.log(`There are ${bulkData.length} addresses in the list`);
   deleteFile('data/bulkData.csv');
   const csv = new ObjectsToCsv(bulkData);
   await csv.toDisk('./data/bulkData.csv');
