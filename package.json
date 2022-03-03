@@ -4,20 +4,28 @@
   "description": "Node tools for cleaning a CSV ready for an airdrop",
   "main": "index.js",
   "scripts": {
+    "setnet:main": "solana config set --url https://api.mainnet-beta.solana.com",
+    "setnet:test": "solana config set --url https://api.testnet.solana.com",
     "test": "echo \"Error: no test specified\" && exit 1",
     "csvToJSON": "npx run-func index.js csvToJSON raw.csv",
     "validateKeys": "npx run-func index.js removeOffCurveKeys",
     "removeDupes": "npx run-func index.js removeDupesByKey address",
     "bulkTokenCSV": "npx run-func index.js bulkTokenCSV 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos",
-    "test:airdrop": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/test.json",
-    "danger:airdrop": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/curved.json"
+    "airdrop:test": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/test.json",
+    "airdrop:danger": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/curved.json",
+    "getNFTList": "npx run-func nft-tools.js getNFTList G1p59D3CScwE9r31RNFsGm3q5xZapt6EXHmtHV7Jq5AS MAIN",
+    "filterCollection": "npx run-func nft-tools.js filterCollection BoomArmy OG",
+    "nftdrop:test": "yarn setnet:test && npx run-func nft-tools.js exeNFTDrop",
+    "nftdrop:danger": "yarn setnet:main && npx run-func nft-tools.js exeNFTDrop"
   },
   "author": "@harkl_",
   "license": "MIT",
   "dependencies": {
+    "@metaplex-foundation/mpl-token-metadata": "^1.2.5",
     "@moreavy/simple-csv-tools": "^1.0.1",
-    "@solana/web3.js": "^1.29.2",
+    "@solana/web3.js": "^1.36.0",
     "lodash": "^4.17.21",
+    "node-fetch": "^2.6.1",
     "objects-to-csv": "^1.3.6",
     "shelljs": "^0.8.4"
   }
