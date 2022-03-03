@@ -56,8 +56,9 @@ const getNFTList = async (publicAddress, network) => {
  * The name and family object in the collection meta
  * @param {string} name
  * @param {string} family
+ * @param {number} count will cut the collection to a specific N value
  */
-const filterCollection = (name, family) => {
+const filterCollection = (name, family, count) => {
   const d = require("./data/NFT/nft-list.json");
   console.log(`Data contains ${d.length} records`);
   const collection = d
@@ -75,6 +76,9 @@ const filterCollection = (name, family) => {
       return;
     })
     .filter((pk) => !!pk);
+  if (count) {
+    collection.length = count;
+  }
   deleteFile("data/NFT/collection.json");
   fs.appendFile(
     "data/NFT/collection.json",
