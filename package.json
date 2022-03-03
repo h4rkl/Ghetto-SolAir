@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setnet:main": "solana config set --url https://api.mainnet-beta.solana.com",
-    "setnet:test": "solana config set --url https://api.testnet.solana.com",
+    "setnet:dev": "solana config set --url https://api.devnet.solana.com",
     "test": "echo \"Error: no test specified\" && exit 1",
     "csvToJSON": "npx run-func index.js csvToJSON raw.csv",
     "validateKeys": "npx run-func index.js removeOffCurveKeys",
@@ -13,10 +13,10 @@
     "bulkTokenCSV": "npx run-func index.js bulkTokenCSV 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos",
     "airdrop:test": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/test.json",
     "airdrop:danger": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/curved.json",
-    "getNFTList": "npx run-func nft-tools.js getNFTList G1p59D3CScwE9r31RNFsGm3q5xZapt6EXHmtHV7Jq5AS MAIN",
+    "getNFTList": "npx run-func nft-tools.js getNFTList 75N1q6rsWT2nHdfsyG3AJJJkYZHViSKrLP3dj7izS8Ao MAIN",
     "filterCollection": "npx run-func nft-tools.js filterCollection BoomArmy OG",
-    "nftdrop:test": "yarn setnet:test && npx run-func nft-tools.js exeNFTDrop",
-    "nftdrop:danger": "yarn setnet:main && npx run-func nft-tools.js exeNFTDrop"
+    "nftdrop:test": "yarn setnet:dev && npx run-func nft-tools.js exeNFTDrop H5fQoWR5zWjvfFHLchbtsnB9fKzUzaqikBAhka2fhvXY",
+    "nftdrop:danger": "yarn setnet:main && npx run-func nft-tools.js exeNFTDrop GRowGA1cq9abztLhXJykXoD7sAnxUARQap2sRX2CZgpv"
   },
   "author": "@harkl_",
   "license": "MIT",

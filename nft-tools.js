@@ -3,9 +3,7 @@ const _ = require("lodash");
 const fetch = require("node-fetch");
 const fs = require("fs");
 const { deleteFile } = require("./index");
-const {
-  Metadata
-} = require("@metaplex-foundation/mpl-token-metadata");
+const { Metadata } = require("@metaplex-foundation/mpl-token-metadata");
 const { Connection } = require("@solana/web3.js");
 
 const ENDPOINTS = {
@@ -15,7 +13,7 @@ const ENDPOINTS = {
 };
 
 /**
- * 
+ *
  * @param {PubKey} publicAddress and Solana NFT owner account
  * @param {ENDPOINTS} network one of DEV, TEST or MAIN
  */
@@ -30,9 +28,12 @@ const getNFTList = async (publicAddress, network) => {
     const accNFTs = await Promise.all(
       nftMeta.map(async (metadata, i) => {
         console.log(`Fetch meta for ${metadata.data.uri}`);
-        const NFTData = await fetch(metadata.data.uri).then((response) =>
-          response.json()
-        );
+        let NFTData;
+        if (metadata?.data?.uri) {
+          NFTData = await fetch(metadata.data.uri).then((response) =>
+            response.json()
+          );
+        }
         console.log(`Meta fetched for ${metadata.data.uri} at index ${i}`);
         return { mint: metadata.mint, ...NFTData };
       })
@@ -54,7 +55,7 @@ const getNFTList = async (publicAddress, network) => {
 /**
  * The name and family object in the collection meta
  * @param {string} name
- * @param {string} family 
+ * @param {string} family
  */
 const filterCollection = (name, family) => {
   const d = require("./data/NFT/nft-list.json");
@@ -95,7 +96,9 @@ const exeNFTDrop = (address) => {
   const errors = [];
   _.forEach(d, (v, i) => {
     console.log(
-      `Sending ${JSON.stringify(v)} to ${address} at count: ${i+1}/${d.length} recipients`
+      `Sending ${JSON.stringify(v)} to ${address} at count: ${i + 1}/${
+        d.length
+      } recipients`
     );
     // Execute the NFT transfer here
     shell.exec(
