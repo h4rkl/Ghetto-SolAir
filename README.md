@@ -22,12 +22,12 @@ A tool for bulk airdropping Solana tokens to a list of JSON or CSV addresses. I 
 
 ### Methods
 
-csvToJSON - converts a CSV file of data to JSON with specific headers
-validateKeys - removes any non-Solana keys
-removeDupes - removes duplicate keys from list
-bulkTokenCSV - create a CSV of the cleaned data
-airdrop:test - test airdrop function
-airdrop:danger - airdrop function complete with error log list for unsuccessful sends (tends to add last few sends to errors list so sanity check the pubKeys before doubling up)
+- **csvToJSON** - converts a CSV file of data to JSON with specific headers
+- **validateKeys** - removes any non-Solana keys
+- **removeDupes** - removes duplicate keys from list
+- **bulkTokenCSV** - create a CSV of the cleaned data
+- **airdrop:test** - test airdrop function
+- **airdrop:danger** - airdrop function complete with error log list for unsuccessful sends (tends to add last few sends to errors list so sanity check the pubKeys before doubling up)
 
 ## NFT bulk sender
 
@@ -35,7 +35,7 @@ A tool to bulk send a whole array of NFTs from your wallet programatically.
 
 ### Methods
 
-getNFTList - gets all NFTs in a Solana pubkey account in JSON format
-filterCollection - filters the list by collection
-nftdrop:test - test your NFT drop between accounts
-nftdrop:danger - execute your NFT drop
+- **getNFTList** - gets all NFTs in a Solana pubkey account in JSON format
+- **filterCollection** - filters the list by collection
+- **nftdrop:test** - test your NFT drop between accounts
+- **nftdrop:danger** - execute your NFT drop
