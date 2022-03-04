@@ -39,3 +39,11 @@ A tool to bulk send a whole array of NFTs from your wallet programatically.
 - **filterCollection** - filters the list by collection
 - **nftdrop:test** - test your NFT drop between accounts
 - **nftdrop:danger** - execute your NFT drop
+
+## Recover Solflare keypair from wallet
+
+You can recover Solflare addresses uising the following prompt pattern where n is the wallet address position:
+
+`solana-keygen recover "prompt://?full-path=m/44'/501'/<n>'/0'"`
+
+eg. `solana-keygen recover "prompt://?full-path=m/44'/501'/6'/0'" -o 1303.json`

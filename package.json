@@ -14,8 +14,9 @@
     "airdrop:test": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/test.json",
     "airdrop:danger": "npx run-func airdrop.js exeAirdrop 1 i3o37JrYVVHMbxyfEskW29HDGheUkXcAezo5zQD3bos ./data/curved.json",
     "getNFTList": "npx run-func nft-tools.js getNFTList 7Yucj5pG1XkWycDiJ75XD7XRCdjbaaPPcbqhABLLVQq3 MAIN",
-    "filterCollection": "npx run-func nft-tools.js filterCollection BoomArmy OG 35",
-    "nftdrop:danger": "yarn setnet:main && npx run-func nft-tools.js exeNFTDrop 8G7Uc64GUs4KWeNYWgh4aMpLKxvSgjPynSsQcZjhCZKK"
+    "filterCollection": "npx run-func nft-tools.js filterCollection BoomArmy OG",
+    "nftdrop:danger": "yarn setnet:main && npx run-func nft-tools.js exeNFTDrop 9kdkdByQFY3fntvHhzNjgqHjPmmQTP3tPLQLYJpU8i2u",
+    "recoverSolflare:n6": "solana-keygen recover \"prompt://?full-path=m/44'/501'/6'/0'\" -o 1303.json"
   },
   "author": "@harkl_",
   "license": "MIT",
