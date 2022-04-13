@@ -1,23 +1,31 @@
 const shell = require("shelljs");
-const _ = require("lodash");
+const { forEach } = require("lodash");
 const fetch = require("node-fetch");
 const fs = require("fs");
 const { deleteFile } = require("./index");
 const { Metadata } = require("@metaplex-foundation/mpl-token-metadata");
-const { Connection } = require("@solana/web3.js");
+const { Connection, PublicKey } = require("@solana/web3.js");
+const { Windex } = require("@wonka-labs/wonka-js");
+const { AnyPublicKey } = require("@metaplex-foundation/mpl-core");
 
 const ENDPOINTS = {
   DEV: "https://api.devnet.solana.com",
   TEST: "https://api.testnet.solana.com",
   MAIN: "https://api.mainnet-beta.solana.com",
-};
+  SERUM: "https://solana-api.projectserum.com",
+  GEN: "https://ssc-dao.genesysgo.net",
+}
 
 /**
- *
- * @param {PubKey} publicAddress and Solana NFT owner account
+ * Gets all the NFTs and associated meta for a given wallet address. Useful for
+ * inspecting a users wallet and getting all NFT meta.
+ * @param {AnyPublicKey} publicAddress and Solana NFT owner account
  * @param {ENDPOINTS} network one of DEV, TEST or MAIN
  */
-const getNFTList = async (publicAddress, network) => {
+const getNFTList = async (
+  publicAddress,
+  network
+) => {
   const connect = network
     ? ENDPOINTS[network]
     : "https://api.devnet.solana.com";
@@ -30,7 +38,7 @@ const getNFTList = async (publicAddress, network) => {
         console.log(`Fetch meta for ${metadata.data.uri}`);
         let NFTData;
         if (metadata?.data?.uri) {
-          NFTData = await fetch(metadata.data.uri).then((response) =>
+          NFTData = await fetch(metadata.data.uri, null).then((response) =>
             response.json()
           );
         }
@@ -62,7 +70,7 @@ const filterCollection = (name, family, count) => {
   const d = require("./data/NFT/nft-list.json");
   console.log(`Data contains ${d.length} records`);
   const collection = d
-    .map((nftData) => {
+  .map((nftData) => {
       if (
         nftData?.collection !== undefined &&
         nftData?.collection?.name === name &&
@@ -98,7 +106,7 @@ const filterCollection = (name, family, count) => {
 const exeNFTDrop = (address) => {
   const d = require("./data/NFT/collection.json");
   const errors = [];
-  _.forEach(d, (v, i) => {
+  forEach(d, (v, i) => {
     console.log(
       `Sending ${JSON.stringify(v)} to ${address} at count: ${i + 1}/${
         d.length
@@ -121,8 +129,42 @@ const exeNFTDrop = (address) => {
   });
 };
 
+/**
+ * Get all the token ids in a CM. The CandyMachine id can be found in the "Metaplex NFT Candy Machine v2 instruction"
+ * where the "#1 - Account0 " is typically the CMv2 pubkey.
+ * https://stackoverflow.com/questions/70597753/how-to-find-all-nfts-minted-from-a-v2-candy-machine
+ * @param {string} candyMachineId 
+ * @param {string} network should be 'MAIN' or 'DEV' - NB!!! has to use Windex endpoint
+ */
+
+const getCMAddresses = async (candyMachineId, network) => {
+  const cmId = new PublicKey(candyMachineId);
+  const endpoint =
+    network === 'MAIN'
+      ? Windex.MAINNET_ENDPOINT 
+      : Windex.DEVNET_ENDPOINT;
+      console.log(endpoint, cmId);
+  const fetchNFTsByCandyMachine = async (cmId) => {
+    const nfts = await Windex.fetchNFTsByCandyMachineID(cmId, 20, endpoint);
+    console.log(`Retrieved ${nfts.length} NFTs!`);
+    return nfts;
+  };
+  const hashes = await fetchNFTsByCandyMachine(cmId);
+  const hashMap = hashes.map(nft => nft.address);
+  deleteFile(`data/NFT/${candyMachineId}-nfts.json`);
+  fs.appendFile(
+    `data/NFT/${candyMachineId}-nfts.json`,
+    JSON.stringify(hashMap),
+    function (err) {
+      if (err) throw new Error(err);
+      console.log(`Collection contains ${hashMap.length} records`);
+    }
+  );
+};
+
 module.exports = {
   exeNFTDrop,
   filterCollection,
   getNFTList,
+  getCMAddresses,
 };

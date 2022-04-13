@@ -39,6 +39,7 @@ A tool to bulk send a whole array of NFTs from your wallet programatically.
 - **filterCollection** - filters the list by collection
 - **nftdrop:test** - test your NFT drop between accounts
 - **nftdrop:danger** - execute your NFT drop
+- **getCMAddresses** - get all the NFTs from a candy machine ID
 
 ## Recover Solflare keypair from wallet
 
