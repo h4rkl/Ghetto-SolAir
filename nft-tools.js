@@ -206,53 +206,71 @@ const listNFTOwners = async (file, network) => {
   try {
     const f = require(file);
     // Split file into groups of 40 to avoid the rate limit
-    const chunkSize = 39;
-    const chunked = [];
-    for (let i = 0; i < f.length; i += chunkSize) {
-      const chunk = f.slice(i, i + chunkSize);
-      chunked.push(chunk);
-    }
+    // const chunkSize = 39;
+    // const chunked = [];
+    // for (let i = 0; i < f.length; i += chunkSize) {
+    //   const chunk = f.slice(i, i + chunkSize);
+    //   chunked.push(chunk);
+    // }
+    const chunked = f;
     let accArr = [];
     const nftAccs = async () => {
       let index = 0;
       return await new Promise((resolve) => {
         const interval = setInterval(async function () {
-          await Promise.all(
-            chunked[index++].map(async (mintAddress, i) => {
-              console.log(
-                `Fetch Acc for ${mintAddress} at index ${index} - ${i}`
-              );
-              const largestAccounts = await connection.getTokenLargestAccounts(
-                new PublicKey(mintAddress)
-              );
-              const largestAccountInfo = await connection.getParsedAccountInfo(
-                largestAccounts.value[0].address
-              );
-              accArr.push(largestAccountInfo.value.data.parsed.info.owner);
-            })
+          console.log(`Fetch Acc for ${chunked[index]} at index ${index}`);
+          const largestAccounts = await connection.getTokenLargestAccounts(
+            new PublicKey(chunked[index])
           );
+          const largestAccountInfo = await connection.getParsedAccountInfo(
+            largestAccounts.value[0].address
+          );
+          accArr.push(largestAccountInfo.value.data.parsed.info.owner);
+          index++;
           if (index === chunked.length) {
             clearInterval(interval);
             resolve();
           }
-        }, 11000);
+        }, 400);
       });
+      // return await new Promise((resolve) => {
+      //   const interval = setInterval(async function () {
+      //     await Promise.all(
+      //       chunked[index++].map(async (mintAddress, i) => {
+      //         console.log(
+      //           `Fetch Acc for ${mintAddress} at index ${index} - ${i}`
+      //         );
+      //         const largestAccounts = await connection.getTokenLargestAccounts(
+      //           new PublicKey(mintAddress)
+      //         );
+      //         const largestAccountInfo = await connection.getParsedAccountInfo(
+      //           largestAccounts.value[0].address
+      //         );
+      //         accArr.push(largestAccountInfo.value.data.parsed.info.owner);
+      //       })
+      //     );
+      //     if (index === chunked.length) {
+      //       clearInterval(interval);
+      //       resolve();
+      //     }
+      //   }, 1000);
+      // });
     };
-    await nftAccs(0);
+    await nftAccs();
     console.log("-----------", accArr.length);
     // setTimeout(function loopRequest() {
     //   setTimeout(loopRequest, 1000);
     //   console.log("boom");
     // }, 0);
-    // deleteFile("data/NFT/acc-nft-list.json");
-    // fs.appendFile(
-    //   "data/NFT/acc-nft-list.json",
-    //   JSON.stringify(chunked),
-    //   function (err) {
-    //     if (err) throw new Error(err);
-    //     console.log(`Converted ${chunked.length} records`);
-    //   }
-    // );
+    deleteFile("data/NFT/acc-nft-list.json");
+    fs.appendFile(
+      "data/NFT/acc-nft-list.json",
+      JSON.stringify(accArr),
+      function (err) {
+        if (err) throw new Error(err);
+        console.log(`Found ${accArr.length} records`);
+      }
+    );
   } catch (error) {
     console.log(error);
   }

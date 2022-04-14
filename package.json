@@ -17,8 +17,8 @@
     "filterCollection": "npx run-func nft-tools.js filterCollection BoomArmy OG",
     "getCMAddresses": "npx run-func nft-tools.js getCMAddresses 5F7V7zy4cga3ZpqNu3KrQLzQGcE5iG7bAqNY6RPrpg7T MAIN",
     "getNFTOwner": "npx run-func nft-tools.js getNFTOwner 2XZDVBYgMLoydApTMbTVeRnF8wt1TXtvoK8NWYR6UBLA MAIN",
-    "listNFTOwners": "npx run-func nft-tools.js listNFTOwners ./data/mint-addresses-all.json GEN",
-    "mapArrtoAddrObj": "npx run-func nft-tools.js mapArrtoAddrObj ./data/mint-addresses-all.json",
+    "listNFTOwners": "npx run-func nft-tools.js listNFTOwners ./data/mint-addresses-all.json MAIN",
+    "mapArrtoAddrObj": "npx run-func nft-tools.js mapArrtoAddrObj ./data/NFT/1303-acc-nft-list.json",
     "nftdrop:danger": "yarn setnet:main && npx run-func nft-tools.js exeNFTDrop 9kdkdByQFY3fntvHhzNjgqHjPmmQTP3tPLQLYJpU8i2u",
     "recoverSolflare:n6": "solana-keygen recover \"prompt://?full-path=m/44'/501'/6'/0'\" -o 1303.json"
   },
