@@ -40,6 +40,7 @@ A tool to bulk send a whole array of NFTs from your wallet programatically.
 - **nftdrop:test** - test your NFT drop between accounts
 - **nftdrop:danger** - execute your NFT drop
 - **getCMAddresses** - get all the NFTs from a candy machine ID
+- **mapArrtoAddrObj** - turns an array of pubkeys into {address: "\<pubkey\>"} format
 
 ## Recover Solflare keypair from wallet
 

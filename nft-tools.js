@@ -143,9 +143,9 @@ const getCMAddresses = async (candyMachineId, network) => {
     network === 'MAIN'
       ? Windex.MAINNET_ENDPOINT 
       : Windex.DEVNET_ENDPOINT;
-      console.log(endpoint, cmId);
+      // console.log(endpoint, cmId);
   const fetchNFTsByCandyMachine = async (cmId) => {
-    const nfts = await Windex.fetchNFTsByCandyMachineID(cmId, 20, endpoint);
+    const nfts = await Windex.fetchNFTsByCandyMachineID(cmId, 5000, endpoint);
     console.log(`Retrieved ${nfts.length} NFTs!`);
     return nfts;
   };
@@ -162,9 +162,28 @@ const getCMAddresses = async (candyMachineId, network) => {
   );
 };
 
+/**
+ * Tool for quickly making address obj in arr for the airdrop tool
+ * @param {string} file 
+ */
+const mapArrtoAddrObj = (file) => {
+  const d = require(file);
+  const addressed = d.map(a => ({address: a}));
+  deleteFile(`data/addressed.json`);
+  fs.appendFile(
+    `data/addressed.json`,
+    JSON.stringify(addressed),
+    function (err) {
+      if (err) throw new Error(err);
+      console.log(`Collection contains ${addressed.length} records`);
+    }
+  );
+}
+
 module.exports = {
   exeNFTDrop,
   filterCollection,
   getNFTList,
   getCMAddresses,
+  mapArrtoAddrObj,
 };
