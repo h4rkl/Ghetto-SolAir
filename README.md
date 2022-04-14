@@ -41,6 +41,7 @@ A tool to bulk send a whole array of NFTs from your wallet programatically.
 - **nftdrop:danger** - execute your NFT drop
 - **getCMAddresses** - get all the NFTs from a candy machine ID
 - **mapArrtoAddrObj** - turns an array of pubkeys into {address: "\<pubkey\>"} format
+- **getNFTOwner** - get the owner of an NFT by mint address
 
 ## Recover Solflare keypair from wallet
 
