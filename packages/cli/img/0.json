@@ -1,0 +1,27 @@
+{
+    "name": "Boom Heroes #DUDE",
+    "description": "Boom Heroes is a collection of 4,777 randomly generated superheroes on the Solana Blockchain.",
+    "image": "https://i6lyefowker4f4dptosoygtd4otiqwml2w7nhzg7zihadurh.arweave.net/R5eCFdZRI8Lwb5uk7Bpj46a-IWYvVvtPk_38oOAdInc",
+    "attributes": [
+      { "trait_type": "background", "value": "electric" },
+      { "trait_type": "body", "value": "squid" },
+      { "trait_type": "suit", "value": "no-suit" },
+      { "trait_type": "chest", "value": "none-chest" },
+      { "trait_type": "shoulders", "value": "none-shoulders" },
+      { "trait_type": "beard", "value": "none-clean" },
+      { "trait_type": "eyes", "value": "black-vigilante" },
+      { "trait_type": "head", "value": "black-sombrero" },
+      { "trait_type": "laser", "value": "none-laser-eyes" },
+      { "trait_type": "season", "value": "1" }
+    ],
+    "symbol": "BOOMHERO",
+    "external_url": "https://boom.army",
+    "collection": { "name": "Boom Heroes", "family": "Season One" },
+    "seller_fee_basis_points": 777,
+    "properties": {
+      "creators": [
+        { "address": "harkLSUe2Puud2TVQUhHW4vs45mF1YMLU3PThPCuWd8", "share": 100 }
+      ],
+      "files": [{ "uri": "https://i6lyefowker4f4dptosoygtd4otiqwml2w7nhzg7zihadurh.arweave.net/R5eCFdZRI8Lwb5uk7Bpj46a-IWYvVvtPk_38oOAdInc", "type": "image/png" }]
+    }
+  }
