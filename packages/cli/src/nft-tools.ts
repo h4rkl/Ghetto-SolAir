@@ -33,7 +33,7 @@ program
     const mint = await actions.mintNFT({
       connection,
       wallet: new NodeWallet(keypair),
-      uri: 'https://arweave.net/H7VmX3hwmmvTt9G9rzkjyja7pP6vFc4NSdsw30FJcF8',
+      uri,
       maxSupply: 1
     });
     console.log(mint);
