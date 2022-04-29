@@ -34,7 +34,7 @@ program
       connection,
       wallet: new NodeWallet(keypair),
       uri,
-      maxSupply: 1
+      maxSupply: 0
     });
     console.log(mint);
     console.log(`Minted a new master NFT || txId: ${mint.txId} || pubKey: ${mint.mint.toString()}`);
