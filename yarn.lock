@@ -1650,9 +1650,9 @@
     eventemitter3 "^4.0.0"
 
 "@solana/web3.js@^1.17.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.36.0":
-  version "1.37.1"
-  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.1.tgz#5a4d30a4cf79c4598e0a437e841c7942e31be74c"
-  integrity sha512-1zm1blRU6ANb8bOfONibKkNKoMyzE1e0Z88MagyRLF1AmfHc+18lFvqxSQKUdazLMHcioZ28h+GfyAaeCT63iA==
+  version "1.37.2"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.2.tgz#41f2daf402743d2cdda85c65a7a4e71d86b795e9"
+  integrity sha512-rgPidynwPTu8iLmS++aQbDGiPPtwjRmu+uQxF9jTNT7v3ifKIlS4HccMdjj4WDcYx8h2mUtQX5xkdk6liSbdvg==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@ethersproject/sha2" "^5.5.0"
@@ -2628,9 +2628,9 @@ async-limiter@~1.0.0:
   integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
 
 async@^2.6.2:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
-  integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.4.tgz#706b7ff6084664cd7eae713f6f965433b5504221"
+  integrity sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==
   dependencies:
     lodash "^4.17.14"
 
@@ -8336,6 +8336,11 @@ parallel-transform@^1.1.0:
     cyclist "^1.0.1"
     inherits "^2.0.3"
     readable-stream "^2.1.5"
+
+parallelshell@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/parallelshell/-/parallelshell-3.0.2.tgz#fffc55aaa145bdd44b5381cf7fd5e521fc21aa7b"
+  integrity sha512-aW73W8tmYiFZtQi41pweV3WWT6o/EvSxAVQHbumOhN53H47OuWQwrRc11xQ2i44GFvR5AjtzhD92r8Kv9X+7Iw==
 
 param-case@^3.0.3:
   version "3.0.4"
