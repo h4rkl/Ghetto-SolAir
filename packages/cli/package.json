@@ -5,14 +5,15 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p ./src",
-    "watch": "tsc -w -p ./src",
     "format": "prettier --loglevel warn --write \"**/*.{ts,js,json,yaml}\"",
     "format:check": "prettier --loglevel warn --check \"**/*.{ts,js,json,yaml}\"",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "lint:check": "eslint \"src/**/*.ts\"",
+    "nft:mint": "ts-node ./src/nft-tools.ts mintNFT https://arweave.net/H7VmX3hwmmvTt9G9rzkjyja7pP6vFc4NSdsw30FJcF8 -k $HARKL -e devnet",
+    "run:test": "ts-node ./src/upload.ts",
+    "run:upload": "ts-node ./src/arweave-uploader.ts upload ./img -k $HARKL -c boom -e devnet",
     "test": "jest",
-    "run:upload": "ts-node $SITESC/solana-tools/packages/cli/src/arweave-uploader.ts upload ./img -k $HARKL -c boom -e devnet",
-    "run:test": "ts-node $SITESC/solana-tools/packages/cli/src/upload.ts"
+    "watch": "tsc -w -p ./src"
   },
   "dependencies": {
     "arweave": "^1.10.23",

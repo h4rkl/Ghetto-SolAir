@@ -1,20 +1,43 @@
-import * as anchor from '@project-serum/anchor';
-import { actions, Wallet } from '@metaplex/js';
-import { stringifyPubkeysAndBNsInObject } from './helpers/parse';
+import * as anchor from "@project-serum/anchor";
+import { actions, NodeWallet } from "@metaplex/js";
+import { program } from "commander";
+import { readFile } from "fs/promises";
+import { clusterApiUrl, Keypair } from "@solana/web3.js";
 
-export async function NFTMintMaster(wallet: Wallet, uri: string, maxSupply?: number) {
-  // @ts-ignore
-  const connection = new anchor.web3.Connection(
-    //@ts-ignore
-    customRpcUrl || getCluster(env),
-  );
-  const result = await actions.mintNFT({
-    connection,
-    wallet,
-    uri,
-    maxSupply,
+program.version("0.0.1");
+
+program
+  .command("mintNFT")
+  .argument("<uri>", "URI for metadata file", (val) => val)
+  .option(
+    "-e, --env <string>",
+    "Solana cluster env name. One of: mainnet-beta, testnet, devnet",
+    "devnet"
+  )
+  .option(
+    "-k, --key <path>",
+    `Sol wallet keypair`,
+    "--Sol wallet keypair not provided"
+  )
+  .action(async (uri: string, options) => {
+    const { key, env } = options;
+
+    console.log(key, env, uri);
+    const jwkkey = await readFile(key, "utf8");
+    const jwk = JSON.parse(jwkkey);
+    let seed = Uint8Array.from(jwk).slice(0, 32);
+    const keypair = Keypair.fromSeed(seed);
+    
+    // @ts-ignore
+    const connection = new anchor.web3.Connection(clusterApiUrl(env));
+    const mint = await actions.mintNFT({
+      connection,
+      wallet: new NodeWallet(keypair),
+      uri: 'https://arweave.net/H7VmX3hwmmvTt9G9rzkjyja7pP6vFc4NSdsw30FJcF8',
+      maxSupply: 1
+    });
+    console.log(mint);
+    console.log(`Minted a new master NFT || txId: ${mint.txId} || pubKey: ${mint.mint.toString()}`);
   });
-  const strResult = stringifyPubkeysAndBNsInObject(result);
-  console.log('Minted a new master NFT:', strResult);
-  return strResult;
-}
+
+program.parse(process.argv);
