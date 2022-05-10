@@ -10,6 +10,8 @@ There is a package called arweaver which allows you to use your SOL wallet to up
 
 - Load single PNG: `arloader upload /home/ezy/Sites-c/solana-tools/packages/cli/img/0.png --with-sol --sol-keypair-path $HARKL --ar-default-keypair --no-bundle`
 - Update the meta with the img URL - make sure to add `?ext=png` to eng of arweave url img
--- Load single JSON: `arloader upload /home/ezy/Sites-c/solana-tools/packages/cli/img/0.json --with-sol --sol-keypair-path $HARKL --ar-default-keypair --no-bundle`
+- Format JSON into a single line
+- Load single JSON: `arloader upload /home/ezy/Sites-c/solana-tools/packages/cli/img/0.json --with-sol --sol-keypair-path $HARKL --ar-default-keypair --no-bundle`
+- MintNFT: `ts-node '/home/ezy/Sites-c/solana-tools/packages/cli/src/nft-tools.ts' mintNFT https://arweave.net/Ym1J_y3Z7JEk-5CHamXpWHzqYxk143iHg-jRvcWNi3Y -e mainnet-beta -k $HARKL`
 
 Once this is done use the mintNFT method with the hardcoded files for meta and image.
