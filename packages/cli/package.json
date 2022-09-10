@@ -1,0 +1,41 @@
+{
+  "name": "@boom/nft-tools",
+  "version": "0.0.1",
+  "main": "./src/arweave-uploader.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p ./src",
+    "format": "prettier --loglevel warn --write \"**/*.{ts,js,json,yaml}\"",
+    "format:check": "prettier --loglevel warn --check \"**/*.{ts,js,json,yaml}\"",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "lint:check": "eslint \"src/**/*.ts\"",
+    "nft:mint": "ts-node ./src/nft-tools.ts mintNFT https://arweave.net/H7VmX3hwmmvTt9G9rzkjyja7pP6vFc4NSdsw30FJcF8 -k $HARKL -e mainnet-beta",
+    "run:test": "ts-node ./src/upload.ts",
+    "run:upload": "ts-node ./src/arweave-uploader.ts upload ./img -k $HARKL -c boom -e devnet",
+    "test": "jest",
+    "watch": "tsc -w -p ./src"
+  },
+  "dependencies": {
+    "arweave": "^1.10.23",
+    "commander": "^9.2.0",
+    "loglevel": "^1.8.0",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.9.1",
+    "@types/webgl2": "^0.0.6",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.4.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.4.3"
+  }
+}
