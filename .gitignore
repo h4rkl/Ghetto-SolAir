@@ -119,3 +119,4 @@ dist
 
 /data/*
 !data/example.csv
+.DS_Store
